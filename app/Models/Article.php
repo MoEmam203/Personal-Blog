@@ -15,7 +15,7 @@ class Article extends Model
     // fillable fields
     protected $fillable = [
         "title",
-        "full-text",
+        "full_text",
         "image",
         "category_id",
         "user_id"
