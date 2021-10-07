@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {
     public function index(){
-        $tags = Tag::all();
+        $tags = Tag::paginate(PAGINATE_NUMBER);
         return view("tags.index")->with("tags",$tags);
     }
 
