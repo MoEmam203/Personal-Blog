@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,4 +44,5 @@ Route::get("articles",[ArticleController::class,'index'])->middleware("auth")->n
 
 Route::group(['middleware'=>'auth'],function(){
     Route::resource('categories', CategoryController::class);
+    Route::resource('tags', TagController::class);
 });
