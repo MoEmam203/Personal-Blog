@@ -29,8 +29,16 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 // Articles CRUD
-Route::get("articles",[ArticleController::class,'index'])->middleware("auth")->name("articles.index");
+Route::group(['prefix'=>'articles'],function(){
 
+    Route::get("",[ArticleController::class,'index'])->name("articles.index");
+    Route::get("/create",[ArticleController::class,'create'])->middleware("auth")->name("articles.create");
+    Route::post("",[ArticleController::class,'store'])->middleware("auth")->name("articles.store");
+    Route::get("/{article}",[ArticleController::class,'show'])->name("articles.show");
+    Route::get("{article}/edit",[ArticleController::class,'edit'])->name("articles.edit");
+    Route::put("/{article}",[ArticleController::class,'update'])->name("articles.update");
+    Route::delete("/{article}",[ArticleController::class,'destroy'])->name("articles.destroy");
+});
 
 
 // Categories CRUD
