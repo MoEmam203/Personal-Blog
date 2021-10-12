@@ -36,7 +36,7 @@
                         <tbody>
                             @forelse ($articles as $article)
                                 <tr>
-                                    <th scope="row">{{ $article->id }}</th>
+                                    <th scope="row" class="text-danger">{{ $article->id }}</th>
                                     <td>{{ $article->title }}</td>
                                     <td>{{ Illuminate\Support\Str::limit( $article->full_text , 20) }}</td>
                                     <td>{{ $article->category->name }}</td>
@@ -47,7 +47,7 @@
                                             No Tags
                                         @endforelse
                                     </td>
-                                    <td>{{ $article->user->name }}</td>
+                                    <td class="text-primary">{{ $article->user->name }}</td>
                                     <td>{{ $article->created_at->diffForHumans() }}</td>
                                     <td>
                                         <a href="{{ route('articles.show',$article->id) }}" class="btn btn-sm btn-primary">View</a>

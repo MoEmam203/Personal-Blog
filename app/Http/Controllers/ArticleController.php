@@ -72,7 +72,7 @@ class ArticleController extends Controller
             $article->image = $image;
             $article->save();
         }
-        return redirect()->route("articles.index")->with("success","Article updated successfully");
+        return redirect()->route("articles.show",$article->id)->with("success","Article updated successfully");
     }
 
     public function destroy(Article $article){
