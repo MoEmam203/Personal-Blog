@@ -59,12 +59,14 @@ class ArticleController extends Controller
     }
 
     public function update(ArticleRequest $request,Article $article){
+        // dd("images/articles/".$article->id."/".$article->image);
         $article->update($request->validated());
 
         $article->tags()->sync($request->tag === null ? [] : $request->tag);
 
         if($request->hasFile("image")){
-            Storage::delete("storage/images/articles/".$article->id."/".$article->image);
+            // Storage::disk('public')->delete("/images/articles/".$article->id."/".$article->image);
+            Storage::deleteDirectory("images/articles/".$article->id);
             $image = $request->file("image")->getClientOriginalName();
             $request->file("image")->storeAs("images/articles" , $article->id."/".$image ,'');
             $article->image = $image;
@@ -75,7 +77,7 @@ class ArticleController extends Controller
 
     public function destroy(Article $article){
         if($article->image){
-            Storage::delete("storage/images/articles/".$article->id);
+            Storage::deleteDirectory("images/articles/".$article->id);
         }
 
         $article->tags()->detach();
