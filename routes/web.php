@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Audience\ArticleController as AudienceArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,12 @@ use Illuminate\Support\Facades\Route;
 // Pagination Number
 define("PAGINATE_NUMBER",5);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',[AudienceArticleController::class,'index'])->name("audience.articles.index");
+Route::get('/audienceArticles/{article}',[AudienceArticleController::class,'show'])->name("audience.articles.show");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
